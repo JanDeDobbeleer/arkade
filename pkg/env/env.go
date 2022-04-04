@@ -33,8 +33,20 @@ func GetClientArch() (arch string, os string) {
 	return archResult, osResult
 }
 
-func LocalBinary(name, subdir string) string {
+func GetUserHome() string {
 	home := os.Getenv("HOME")
+	if home != "" {
+		return home
+	}
+	home = os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
+	if home == "" {
+		home = os.Getenv("USERPROFILE")
+	}
+	return home
+}
+
+func LocalBinary(name, subdir string) string {
+	home := GetUserHome()
 	val := path.Join(home, ".arkade/bin/")
 	if len(subdir) > 0 {
 		val = path.Join(val, subdir)

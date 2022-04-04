@@ -8,16 +8,18 @@ import (
 	"os"
 	"path"
 	"strings"
+
+	"github.com/alexellis/arkade/pkg/env"
 )
 
 func GetUserDir() string {
-	home := os.Getenv("HOME")
+	home := env.GetUserHome()
 	root := fmt.Sprintf("%s/.arkade/", home)
 	return root
 }
 
 func InitUserDir() (string, error) {
-	home := os.Getenv("HOME")
+	home := env.GetUserHome()
 	root := fmt.Sprintf("%s/.arkade/", home)
 
 	if len(home) == 0 {
@@ -40,7 +42,7 @@ func InitUserDir() (string, error) {
 }
 
 func GetDefaultKubeconfig() string {
-	kubeConfigPath := path.Join(os.Getenv("HOME"), ".kube/config")
+	kubeConfigPath := path.Join(env.GetUserHome(), ".kube/config")
 
 	if val, ok := os.LookupEnv("KUBECONFIG"); ok {
 		kubeConfigPath = val
