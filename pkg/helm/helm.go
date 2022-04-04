@@ -41,9 +41,6 @@ func GetHelmURL(arch, os, version string) string {
 	} else if strings.HasPrefix(arch, "aarch64") {
 		archSuffix = "arm64"
 	}
-	if strings.Contains(strings.ToLower(os), "mingw") {
-		osSuffix = "windows"
-	}
 
 	return fmt.Sprintf("https://get.helm.sh/helm-%s-%s-%s.tar.gz", version, osSuffix, archSuffix)
 }

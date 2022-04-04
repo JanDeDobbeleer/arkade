@@ -30,7 +30,7 @@ func MakeTools() Tools {
 			Repo:        "faas-cli",
 			Name:        "faas-cli",
 			Description: "Official CLI for OpenFaaS.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 {{.Name}}.exe
 {{- else if eq .OS "darwin" -}}
 {{.Name}}-darwin
@@ -67,7 +67,7 @@ func MakeTools() Tools {
 {{$os := .OS}}
 {{$ext := "tar.gz"}}
 
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$os = "windows"}}
 {{$ext = "zip"}}
 {{- end -}}
@@ -89,7 +89,7 @@ https://get.helm.sh/helm-{{.Version}}-{{$os}}-{{$arch}}.{{$ext}}`,
 	{{$os := .OS}}
 	{{$ext := ""}}
 
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$os = "windows"}}
 	{{$ext = ".exe"}}
 	{{- end -}}
@@ -116,7 +116,7 @@ helmfile_{{$os}}_{{$arch}}{{$ext}}`,
 {{$ext := ""}}
 {{$os := .OS}}
 
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$ext = ".exe"}}
 {{$os = "win"}}
 {{- else if eq .OS "darwin" -}}
@@ -151,7 +151,7 @@ helmfile_{{$os}}_{{$arch}}{{$ext}}`,
 {{$ext := ""}}
 {{$os := .OS}}
 
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$ext = ".exe"}}
 {{$os = "windows"}}
 {{- end -}}
@@ -185,7 +185,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "kind",
 			Name:        "kind",
 			Description: "Run local Kubernetes clusters using Docker container nodes.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 {{.Name}}-windows-amd64
 {{- else if eq .OS "darwin" -}}
 	{{- if eq .Arch "aarch64" -}}
@@ -228,7 +228,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "autok3s",
 			Name:        "autok3s",
 			Description: "Run Rancher Lab's lightweight Kubernetes distribution k3s everywhere.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}_windows_amd64.exe
 	{{- else if eq .OS "darwin" -}}
 	{{.Name}}_darwin_amd64
@@ -249,7 +249,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "devspace",
 			Name:        "devspace",
 			Description: "Automate your deployment workflow with DevSpace and develop software directly inside Kubernetes.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}-windows-amd64.exe
 	{{- else if and (eq .OS "darwin") (eq .Arch "aarch64") -}}
 	{{.Name}}-darwin-arm64
@@ -269,7 +269,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Name:        "tilt",
 			Description: "A multi-service dev environment for teams on Kubernetes.",
 			BinaryTemplate: `{{$version:=slice .Version 1}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{.Name}}.{{$version}}.windows.x86_64.zip
 	{{- else if and (eq .OS "darwin") (eq .Arch "aarch64") -}}
 	{{.Name}}.{{$version}}.mac.arm64_ALPHA.tar.gz
@@ -292,7 +292,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "k3d",
 			Name:        "k3d",
 			Description: "Helper to run Rancher Lab's k3s in Docker.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}-windows-amd64.exe
 	{{- else if eq .OS "darwin" -}}
 	{{.Name}}-darwin-amd64
@@ -313,7 +313,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "k3sup",
 			Name:        "k3sup",
 			Description: "Bootstrap Kubernetes with k3s over SSH < 1 min.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}.exe
 	{{- else if eq .OS "darwin" -}}
 	{{.Name}}-darwin
@@ -333,7 +333,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 			Repo:        "arkade",
 			Name:        "arkade",
 			Description: "Portable marketplace for downloading your favourite devops CLIs and installing helm charts, with a single command.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 		{{.Name}}.exe
 		{{- else if eq .OS "darwin" -}}
 		{{.Name}}-darwin
@@ -366,7 +366,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 		{{- end -}}
 
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "linux"}}
@@ -391,7 +391,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 {{$fileName = "inletsctl-armhf.tgz"}}
 {{- else if eq .Arch "arm64" -}}
 {{$fileName = "inletsctl-arm64.tgz"}}
-{{ else if HasPrefix .OS "ming" -}}
+{{ else if eq .OS "windows" -}}
 {{$fileName = "inletsctl.exe.tgz"}}
 {{- else if eq .OS "linux" -}}
 {{$fileName = "inletsctl.tgz"}}
@@ -399,7 +399,7 @@ https://storage.googleapis.com/kubernetes-release/release/{{.Version}}/bin/{{$os
 {{$fileName = "inletsctl-darwin.tgz"}}
 {{- end -}}
 https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}`,
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 {{.Name}}.exe
 {{- else if eq .OS "darwin" -}}
 {{.Name}}-darwin
@@ -420,7 +420,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			Description: "Open Service Mesh uniformly manages, secures, and gets out-of-the-box observability features.",
 			BinaryTemplate: `
 	{{$osStr := ""}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$osStr = "windows"}}
 	{{- else if eq .OS "linux" -}}
 	{{$osStr = "linux"}}
@@ -437,7 +437,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			Name:        "linkerd2",
 			Version:     "stable-2.9.1",
 			Description: "Ultralight, security-first service mesh for Kubernetes.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 {{.Name}}-cli-{{.Version}}-windows.exe
 {{- else if eq .OS "darwin" -}}
 {{.Name}}-cli-{{.Version}}-darwin
@@ -501,7 +501,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			Description: "Official command line interface for the DigitalOcean API.",
 			URLTemplate: `
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "linux"}}
@@ -515,7 +515,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 		{{- end -}}
 
 		{{$archiveStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$archiveStr = "zip"}}
 		{{- else -}}
 		{{$archiveStr = "tar.gz"}}
@@ -545,7 +545,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			{{- end -}}
 
 			{{$os := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$os = "Windows"}}
 			{{$extStr = "zip"}}
 			{{- else if eq .OS "linux" -}}
@@ -565,7 +565,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			Description: "Provides a terminal UI to interact with your Kubernetes clusters.",
 			BinaryTemplate: `
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "Windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "Linux"}}
@@ -591,7 +591,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			Description: "Scans live Kubernetes cluster and reports potential issues with deployed resources and configurations.",
 			BinaryTemplate: `
 			{{$osStr := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$osStr = "Windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "Linux"}}
@@ -619,12 +619,12 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			BinaryTemplate: `
 
 		{{$extStr := "tar.gz"}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$extStr = "zip"}}
 		{{- end -}}
 
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "linux"}}
@@ -660,7 +660,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 			{{- end -}}
 
 			{{$os := .OS}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$os = "windows"}}
 			{{- end -}}
 
@@ -683,7 +683,7 @@ https://github.com/inlets/inletsctl/releases/download/{{.Version}}/{{$fileName}}
 {{- end -}}
 
 {{$os := .OS}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$os = "windows"}}
 {{- end -}}
 
@@ -707,7 +707,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- end -}}
 
 			{{$os := .OS}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$os = "windows"}}
 			{{- end -}}
 
@@ -732,7 +732,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- end -}}
 
 			{{$os := .OS}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$os = "windows"}}
 			{{- end -}}
 
@@ -747,12 +747,12 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			BinaryTemplate: `
 
 	{{$extStr := "tar.gz"}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$extStr = "zip"}}
 	{{- end -}}
 
 	{{$osStr := ""}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$osStr = "windows"}}
 	{{- else if eq .OS "linux" -}}
 	{{$osStr = "linux"}}
@@ -779,7 +779,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			BinaryTemplate: `
 
 	{{$osStr := ""}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$osStr = "windows"}}
 	{{- else if eq .OS "linux" -}}
 	{{$osStr = "linux"}}
@@ -788,7 +788,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 	{{- end -}}
 
 	{{$extStr := "tgz"}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$extStr = "zip"}}
 	{{- end -}}
 
@@ -803,12 +803,12 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			Description: "Docker CLI plugin for extended build capabilities with BuildKit.",
 			BinaryTemplate: `
 				{{$extStr := ""}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$extStr = ".exe"}}
 				{{- end -}}
 
 				{{$osStr := ""}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$osStr = "windows"}}
 				{{- else if eq .OS "linux" -}}
 				{{$osStr = "linux"}}
@@ -839,7 +839,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 	// {{$ext := ""}}
 	// {{$os := .OS}}
 
-	// {{ if HasPrefix .OS "ming" -}}
+	// {{ if eq .OS "windows" -}}
 	// {{$os = "windows"}}
 	// {{$ext = ".exe"}}
 	// {{$ext := ""}}
@@ -863,7 +863,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 	{{- end -}}
 	{{- else if eq .OS "darwin" -}}
 	{{$osStr = "darwin-amd64"}}
-	{{ else if HasPrefix .OS "ming" -}}
+	{{ else if eq .OS "windows" -}}
 	{{$osStr ="windows-amd64"}}
 	{{- end -}}
 
@@ -892,7 +892,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- else if eq .Arch "x86_64" -}}
 			{{$osStr = "darwin_amd64"}}
 			{{- end -}}
-			{{ else if HasPrefix .OS "ming" -}}
+			{{ else if eq .OS "windows" -}}
 			{{-  if eq .Arch "aarch64" -}}
 			{{$osStr = "darwin_arm64"}}
 			{{- else if eq .Arch "x86_64" -}}
@@ -916,7 +916,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- else if eq .Arch "x86_64" -}}
 			{{$osStr = "darwin_amd64"}}
 			{{- end -}}
-			{{ else if HasPrefix .OS "ming" -}}
+			{{ else if eq .OS "windows" -}}
 			{{-  if eq .Arch "aarch64" -}}
 			{{$osStr = "darwin_arm64"}}
 			{{- else if eq .Arch "x86_64" -}}
@@ -932,7 +932,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			Repo:        "minikube",
 			Name:        "minikube",
 			Description: "Runs the latest stable release of Kubernetes, with support for standard Kubernetes features.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}-windows-amd64.exe
 	{{- else if eq .OS "darwin" -}}
 	{{.Name}}-darwin-amd64
@@ -964,7 +964,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 {{$os := .OS}}
 {{$ext := "tar.gz"}}
 
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$os = "windows"}}
 {{- end -}}
 
@@ -987,7 +987,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 
 	{{$os := .OS}}
 	{{$ext := "tar.gz"}}
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$os = "windows"}}
 	{{- end -}}
 
@@ -1000,7 +1000,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			Repo:        "yq",
 			Name:        "yq",
 			Description: "Portable command-line YAML processor.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 	{{.Name}}_windows_amd64.exe
 	{{- else if eq .OS "darwin" -}}
 	{{.Name}}_darwin_amd64
@@ -1043,7 +1043,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			Description: "Static HTML and CSS website generator.",
 			BinaryTemplate: `
 			{{$osStr := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$osStr = "Windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "Linux"}}
@@ -1071,7 +1071,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 {{$arch := .Arch}}
 
 {{$osStr := ""}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$osStr = "windows"}}
 {{- else if eq .OS "linux" -}}
 {{$osStr = "linux"}}
@@ -1082,7 +1082,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 {{$osStr = "darwin"}}
 {{- end -}}
 {{$ext := ""}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$ext = ".exe"}}
 {{- end -}}
 
@@ -1095,7 +1095,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			Repo:        "opa",
 			Name:        "opa",
 			Description: "General-purpose policy engine that enables unified, context-aware policy enforcement across the entire stack.",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+			BinaryTemplate: `{{ if eq .OS "windows" -}}
 			{{.Name}}_windows_amd64.exe
 			{{- else if eq .OS "darwin" -}}
 			{{.Name}}_darwin_amd64
@@ -1121,7 +1121,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{$arch = "arm64"}}
 			{{- end -}}
 			{{$osStr := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$osStr = "windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "linux"}}
@@ -1129,7 +1129,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{$osStr = "darwin"}}
 			{{- end -}}
 			{{$ext := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$ext = ".exe"}}
 			{{- end -}}
 			https://dl.min.io/client/{{.Repo}}/release/{{$osStr}}-{{$arch}}/{{.Name}}{{$ext}}`,
@@ -1153,7 +1153,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- end -}}
 
 			{{$osStr := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$osStr = "windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "linux"}}
@@ -1177,7 +1177,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- end -}}
 
 			{{$osStr := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$osStr = "windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "linux"}}
@@ -1186,7 +1186,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			{{- end -}}
 
 			{{$ext := ""}}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{$ext = ".exe"}}
 			{{- end -}}
 
@@ -1237,14 +1237,14 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 				{{- end -}}
 
 				{{$versionString:=(printf "%s-%s" .OS $arch)}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$versionString = "win"}}
 				{{- else if eq .OS "darwin" -}}
 				{{$versionString = "osx"}}
 				{{- end -}}
 
 				{{$ext := ".tar.gz"}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$ext = ".zip"}}
 				{{- end -}}
 
@@ -1266,7 +1266,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 				{{- end -}}
 
 				{{$osString:= .OS}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$osString = "Windows"}}
 				{{- else if eq .OS "darwin" -}}
 				{{$osString = "Darwin"}}
@@ -1275,7 +1275,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 				{{- end -}}
 
 				{{$ext := ".tar.gz"}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$ext = ".zip"}}
 				{{- end -}}
 
@@ -1301,7 +1301,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 
 			{{ if eq .OS "darwin" -}}
 			{{$os = "-darwin"}}
-			{{ else if HasPrefix .OS "ming" -}}
+			{{ else if eq .OS "windows" -}}
 			{{$ext = ".exe"}}
 			{{- end -}}
 			{{.Name}}{{$os}}{{$arch}}{{$ext}}`,
@@ -1317,7 +1317,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 			BinaryTemplate: `
 			{{ $ext := "" }}
 			{{ $osStr := "linux" }}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{	$osStr = "windows" }}
 			{{ $ext = ".exe" }}
 			{{- else if eq .OS "darwin" -}}
@@ -1383,7 +1383,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 				{{- end -}}
 
 				{{$osString := ""}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$osString = "windows"}}
 				{{- else if eq .OS "linux" -}}
 				{{$osString = "linux"}}
@@ -1392,7 +1392,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 				{{- end -}}
 
 				{{$ext := ".tar.gz"}}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{$ext = ".zip"}}
 				{{- end -}}
 
@@ -1437,7 +1437,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 		{{- end -}}
 
 		{{$ext := ".tar.gz"}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$ext = ".zip"}}
 		{{- end -}}
 
@@ -1459,7 +1459,7 @@ https://releases.hashicorp.com/{{.Name}}/{{.Version}}/{{.Name}}_{{.Version}}_{{$
 {{- end -}}
 
 {{$osString := ""}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$osString = "windows"}}
 {{- else if eq .OS "linux" -}}
 {{$osString = "linux"}}
@@ -1478,7 +1478,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 {{- end -}}
 
 {{$osString := ""}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$osString = "windows"}}
 {{- else if eq .OS "linux" -}}
 {{$osString = "linux"}}
@@ -1535,7 +1535,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "A CLI to manage Kilo, a multi-cloud network overlay built on WireGuard and designed for Kubernetes.",
 			BinaryTemplate: `
 {{$os := .OS}}
-{{ if HasPrefix .OS "ming" -}}
+{{ if eq .OS "windows" -}}
 {{$os = "windows"}}
 {{- end -}}
 {{$arch := "amd64"}}
@@ -1557,7 +1557,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			BinaryTemplate: `
 			{{ $ext := "" }}
 			{{ $osStr := "linux" }}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{	$osStr = "windows" }}
 			{{ $ext = ".exe" }}
 			{{- else if eq .OS "darwin" -}}
@@ -1599,7 +1599,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 	{{$os := .OS}}
 	{{$ext := ""}}
 
-	{{ if HasPrefix .OS "ming" -}}
+	{{ if eq .OS "windows" -}}
 	{{$os = "win"}}
 	{{$ext = ".exe"}}
 	{{- end -}}
@@ -1617,7 +1617,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Official Equinix Metal CLI",
 			BinaryTemplate: `{{ $ext := "" }}
 				{{ $osStr := "linux" }}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{	$osStr = "windows" }}
 				{{ $ext = ".exe" }}
 				{{- else if eq .OS "darwin" -}}
@@ -1674,7 +1674,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Repo}}
 
 {{- if eq .OS "darwin" -}}
 {{ $osStr = "MacOS" }}
-{{- else if HasPrefix .OS "ming" -}}
+{{- else if eq .OS "windows" -}}
 {{ $osStr = "Windows" }}
 {{- end -}}
 
@@ -1738,7 +1738,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Container Signing, Verification and Storage in an OCI registry.",
 			BinaryTemplate: `{{ $ext := "" }}
 				{{ $osStr := "linux" }}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{ $osStr = "windows" }}
 				{{ $ext = ".exe" }}
 				{{- else if eq .OS "darwin" -}}
@@ -1768,7 +1768,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Secure Supply Chain - Transparency Log",
 			BinaryTemplate: `{{ $ext := "" }}
 			{{ $osStr := "linux" }}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{ $osStr = "windows" }}
 			{{ $ext = ".exe" }}
 			{{- else if eq .OS "darwin" -}}
@@ -1798,7 +1798,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Security scanner for your Terraform code",
 			BinaryTemplate: `{{ $ext := "" }}
 				{{ $osStr := "linux" }}
-				{{ if HasPrefix .OS "ming" -}}
+				{{ if eq .OS "windows" -}}
 				{{	$osStr = "windows" }}
 				{{ $ext = ".exe" }}
 				{{- else if eq .OS "darwin" -}}
@@ -1821,7 +1821,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Version:     "0.10.0",
 			Description: "A tool for exploring each layer in a docker image",
 			URLTemplate: `{{$osStr := ""}}
-			{{- if HasPrefix .OS "ming" -}}
+			{{- if eq .OS "windows" -}}
 			{{$osStr = "windows"}}
 			{{- else if eq .OS "linux" -}}
 			{{$osStr = "linux"}}
@@ -1830,7 +1830,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			{{- end -}}
 
 			{{$archiveStr := ""}}
-			{{- if HasPrefix .OS "ming" -}}
+			{{- if eq .OS "windows" -}}
 			{{$archiveStr = ".zip"}}
 			{{- else -}}
 			{{$archiveStr = ".tar.gz"}}
@@ -1848,7 +1848,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Deliver Go binaries as fast and easily as possible",
 			BinaryTemplate: `
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "Windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "Linux"}}
@@ -1864,7 +1864,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 		{{- end -}}
 
 		{{$archiveStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$archiveStr = "zip"}}
 		{{- else -}}
 		{{$archiveStr = "tar.gz"}}
@@ -1881,7 +1881,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "kubescape is the first tool for testing if Kubernetes is deployed securely as defined in Kubernetes Hardening Guidance by to NSA and CISA",
 			BinaryTemplate: `
 		{{$osStr := ""}}
-		{{ if HasPrefix .OS "ming" -}}
+		{{ if eq .OS "windows" -}}
 		{{$osStr = "windows"}}
 		{{- else if eq .OS "linux" -}}
 		{{$osStr = "ubuntu"}}
@@ -1920,7 +1920,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster.",
 			BinaryTemplate: `{{ $ext := "" }}
 			{{ $osStr := "linux" }}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
             {{ $osStr = "windows" }}
 			{{ $ext = ".exe" }}
 			{{- else if eq .OS "darwin" -}}
@@ -1947,7 +1947,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			{{ $archStr := "" }}
 			{{ $extStr := ".tar.gz" }}
 
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{ $osStr = "windows" }}
 			{{ $extStr = ".zip" }}
 			{{- else if eq .OS "linux" -}}
@@ -1977,7 +1977,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			{{ $archStr := "" }}
 			{{ $extStr := ".tar.gz" }}
 
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{ $osStr = "Windows" }}
 			{{- else if eq .OS "linux" -}}
 			{{ $osStr = "Linux" }}
@@ -2004,20 +2004,20 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 				{{ $osStr := "" }}
 				{{ $archStr := "" }}
 				{{$archiveStr := ""}}
-				{{- if HasPrefix .OS "ming" -}}
+				{{- if eq .OS "windows" -}}
 				{{$archiveStr = ".exe"}}
 				{{- else -}}
 				{{$archiveStr = ""}}
 				{{- end -}}
-	
-				{{ if HasPrefix .OS "ming" -}}
+
+				{{ if eq .OS "windows" -}}
 				{{ $osStr = "windows" }}
 				{{- else if eq .OS "linux" -}}
 				{{ $osStr = "linux" }}
 				{{- else if eq .OS "darwin" -}}
 				{{ $osStr = "darwin" }}
 				{{- end -}}
-	
+
 				{{- if eq .Arch "x86_64" -}}
 				{{ $archStr = "amd64" }}
 				{{- else if eq .Arch "aarch64" -}}
@@ -2025,7 +2025,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 				{{- else if eq .Arch "armv7l" -}}
 				{{ $archStr = "arm" }}
 				{{- end -}}
-	
+
 				{{.Version}}/{{.Name}}-v{{.VersionNumber}}-{{$osStr}}-{{$archStr}}{{$archiveStr}}`,
 		})
 	tools = append(tools,
@@ -2043,7 +2043,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			{{ $archStr = "arm64" }}
 			{{- end -}}
 
-			{{- if HasPrefix .OS "ming" -}}
+			{{- if eq .OS "windows" -}}
 			{{ .Name }}-{{ .Version }}.exe
 			{{- else -}}
 			{{ .Name }}-{{ .Version }}.{{ .OS }}.{{ $archStr }}
@@ -2059,12 +2059,12 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "A portable devkit for CI/CD pipelines.",
 			URLTemplate: `
 	{{ $ext := ".tar.gz"}}
-	{{- if HasPrefix .OS "ming" -}}
+	{{- if eq .OS "windows" -}}
 	{{ $ext = ".zip"}}
 	{{- end -}}
 
 	{{ $os := .OS }}
-	{{- if HasPrefix .OS "ming" -}}
+	{{- if eq .OS "windows" -}}
 	{{ $os = "windows" }}
 	{{- end -}}
 
@@ -2080,7 +2080,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			{{ $name := "dagger" }}
 
 			{{ $os := .OS }}
-			{{- if HasPrefix .OS "ming" -}}
+			{{- if eq .OS "windows" -}}
 			{{ $name = "dagger.exe" }}
 			{{- end -}}
 
@@ -2120,7 +2120,7 @@ https://github.com/{{.Owner}}/{{.Repo}}/releases/download/{{.Version}}/{{.Name}}
 			Description: "A prompt theme engine for any shell that can display kubernetes information.",
 			BinaryTemplate: `{{ $ext := "" }}
 			{{ $osStr := "linux" }}
-			{{ if HasPrefix .OS "ming" -}}
+			{{ if eq .OS "windows" -}}
 			{{ $osStr = "windows" }}
 			{{ $ext = ".exe" }}
 			{{- else if eq .OS "darwin" -}}

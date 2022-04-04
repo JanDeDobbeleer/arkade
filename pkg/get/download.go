@@ -60,7 +60,7 @@ func Download(tool *Tool, arch, operatingSystem, version string, downloadMode in
 	}
 
 	finalName := tool.Name
-	if strings.Contains(strings.ToLower(operatingSystem), "mingw") && tool.NoExtension == false {
+	if strings.Contains(strings.ToLower(operatingSystem), "windows") && tool.NoExtension == false {
 		finalName = finalName + ".exe"
 	}
 
@@ -191,7 +191,7 @@ func decompress(tool *Tool, downloadURL, outFilePath, operatingSystem, arch, ver
 		outFilePath = path.Join(outFilePathDir, tool.Name)
 	}
 
-	if strings.Contains(strings.ToLower(operatingSystem), "mingw") && tool.NoExtension == false {
+	if strings.Contains(strings.ToLower(operatingSystem), "windows") && tool.NoExtension == false {
 		outFilePath += ".exe"
 	}
 

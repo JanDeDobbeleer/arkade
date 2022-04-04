@@ -390,7 +390,7 @@ func Test_DownloadFaaSCLIWindows(t *testing.T) {
 		}
 	}
 
-	gotURL, err := tool.GetURL("mingw64_nt-10.0-18362", arch64bit, "", false)
+	gotURL, err := tool.GetURL("windows", arch64bit, "", false)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -414,7 +414,7 @@ func Test_DownloadKubeseal(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v0.17.4",
 			url:     "https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.17.4/kubeseal-0.17.4-windows-amd64.tar.gz"},
@@ -463,7 +463,7 @@ func Test_DownloadKind(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v0.11.0",
 			url:     "https://github.com/kubernetes-sigs/kind/releases/download/v0.11.0/kind-windows-amd64"},
@@ -512,7 +512,7 @@ func Test_DownloadK3d(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v3.0.0",
 			url:     "https://github.com/k3d-io/k3d/releases/download/v3.0.0/k3d-windows-amd64.exe"},
@@ -590,7 +590,7 @@ func Test_DownloadDevspace(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v5.15.0",
 			url:     "https://github.com/loft-sh/devspace/releases/download/v5.15.0/devspace-windows-amd64.exe"},
@@ -635,7 +635,7 @@ func Test_DownloadTilt(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v0.22.8",
 			url:     "https://github.com/tilt-dev/tilt/releases/download/v0.22.8/tilt.0.22.8.windows.x86_64.zip"},
@@ -680,7 +680,7 @@ func Test_DownloadK3sup(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "0.9.2",
 			url:     "https://github.com/alexellis/k3sup/releases/download/0.9.2/k3sup.exe"},
@@ -724,7 +724,7 @@ func Test_DownloadAutok3s(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v0.4.4",
 			url:     "https://github.com/cnrancher/autok3s/releases/download/v0.4.4/autok3s_windows_amd64.exe"},
@@ -769,7 +769,7 @@ func Test_DownloadInletsctl(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "0.5.4",
 			url:     "https://github.com/inlets/inletsctl/releases/download/0.5.4/inletsctl.exe.tgz"},
@@ -892,7 +892,7 @@ func Test_DownloadDigitalOcean(t *testing.T) {
 	const urlTemplate = "https://github.com/digitalocean/doctl/releases/download/v1.46.0/doctl-1.46.0-%s-%s.%s"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     fmt.Sprintf(urlTemplate, "windows", "amd64", "zip")},
@@ -931,7 +931,7 @@ func Test_DownloadEKSCTL(t *testing.T) {
 	const toolVersion = "v0.79.0"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     "https://github.com/weaveworks/eksctl/releases/download/v0.79.0/eksctl_Windows_amd64.zip"},
@@ -977,7 +977,7 @@ func Test_DownloadK9s(t *testing.T) {
 	const toolVersion = "v0.24.10"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/derailed/k9s/releases/download/v0.24.10/k9s_Windows_x86_64.tar.gz`,
@@ -1019,7 +1019,7 @@ func Test_DownloadCivo(t *testing.T) {
 	const toolVersion = "v0.7.11"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/civo/cli/releases/download/v0.7.11/civo-0.7.11-windows-amd64.zip`,
@@ -1061,7 +1061,7 @@ func Test_DownloadWaypoint(t *testing.T) {
 	const toolVersion = "0.6.1"
 
 	tests := []test{
-		{os: "ming",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://releases.hashicorp.com/waypoint/0.6.1/waypoint_0.6.1_windows_amd64.zip`,
@@ -1109,7 +1109,7 @@ func Test_DownloadTerraform(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "mingw64_nt-10.0-18362",
+			os:      "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_windows_amd64.zip`,
@@ -1167,7 +1167,7 @@ func Test_DownloadPacker(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "mingw64_nt-10.0-18362",
+			os:      "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://releases.hashicorp.com/packer/1.6.5/packer_1.6.5_windows_amd64.zip`,
@@ -1224,7 +1224,7 @@ func Test_DownloadGH(t *testing.T) {
 	const toolVersion = "v1.6.1"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/cli/cli/releases/download/v1.6.1/gh_1.6.1_windows_amd64.zip`,
@@ -1266,7 +1266,7 @@ func Test_DownloadPack(t *testing.T) {
 	const toolVersion = "v0.14.2"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			version: toolVersion,
 			url:     `https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-windows.zip`,
 		},
@@ -1300,7 +1300,7 @@ func Test_DownloadBuildx(t *testing.T) {
 	const toolVersion = "v0.4.2"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.windows-amd64.exe`,
@@ -1342,7 +1342,7 @@ func Test_DownloadDockerCompose(t *testing.T) {
 	const toolVersion = "v2.3.4"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-windows-x86_64.exe`,
@@ -1389,7 +1389,7 @@ func Test_DownloadHelmfile(t *testing.T) {
 	const toolVersion = "v0.132.1"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/roboll/helmfile/releases/download/v0.132.1/helmfile_windows_amd64.exe`,
@@ -1426,7 +1426,7 @@ func Test_DownloadOpa(t *testing.T) {
 	const toolVersion = "v0.24.0"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			version: toolVersion,
 			url:     `https://github.com/open-policy-agent/opa/releases/download/v0.24.0/opa_windows_amd64.exe`,
 		},
@@ -1475,7 +1475,7 @@ func Test_DownloadMinio(t *testing.T) {
 
 	tests := []test{
 		{
-			os:   "ming",
+			os:   "windows",
 			arch: "amd64",
 			url:  `https://dl.min.io/client/mc/release/windows-amd64/mc.exe`,
 		},
@@ -1533,7 +1533,7 @@ func Test_DownloadNats(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    "amd64",
 			version: "v0.0.28",
 			url:     `https://github.com/nats-io/natscli/releases/download/v0.0.28/nats-0.0.28-windows-amd64.zip`,
@@ -1594,7 +1594,7 @@ func Test_DownloadLinkerd(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "stable-2.9.1",
 			url:     "https://github.com/linkerd/linkerd2/releases/download/stable-2.9.1/linkerd2-cli-stable-2.9.1-windows.exe"},
@@ -1635,7 +1635,7 @@ func Test_DownloadArgocd(t *testing.T) {
 	}
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: "v1.8.6",
 			url:     "https://github.com/argoproj/argo-cd/releases/download/v1.8.6/argocd-windows-amd64.exe"},
@@ -1708,7 +1708,7 @@ func Test_DownloadIstioCtl(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    "amd64",
 			version: "1.9.1",
 			url:     `https://github.com/istio/istio/releases/download/1.9.1/istioctl-1.9.1-win.zip`,
@@ -1778,7 +1778,7 @@ func Test_DownloadTektonCli(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.17.2",
 			url:     `https://github.com/tektoncd/cli/releases/download/v0.17.2/tkn_0.17.2_Windows_x86_64.zip`,
@@ -1825,7 +1825,7 @@ func Test_DownloadInfluxCli(t *testing.T) {
 			os:      "windows",
 			arch:    arch64bit,
 			version: "2.0.7",
-			url:     `https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.0.7-windows-amd64.tar.gz`,
+			url:     `https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.0.7-windows-amd64.zip`,
 		},
 		{
 			os:      "linux",
@@ -1868,7 +1868,7 @@ func Test_DownloadInletsProCli(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     `https://github.com/inlets/inlets-pro/releases/download/0.9.1/inlets-pro.exe`,
@@ -1931,7 +1931,7 @@ func Test_DownloadKim(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.1.0-alpha.12",
 			url:     `https://github.com/rancher/kim/releases/download/v0.1.0-alpha.12/kim-windows-amd64.exe`,
@@ -2328,7 +2328,7 @@ func Test_DownloadKgctl(t *testing.T) {
 			url:     `https://github.com/squat/kilo/releases/download/0.3.0/kgctl-linux-arm64`,
 		},
 		{
-			os:      "mingw64_nt-10.0-18362",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "0.3.0",
 			url:     `https://github.com/squat/kilo/releases/download/0.3.0/kgctl-windows-amd64`,
@@ -2386,7 +2386,7 @@ func Test_DownloadEquinixMetalCli(t *testing.T) {
 			url:     `https://github.com/equinix/metal-cli/releases/download/0.6.0-alpha2/metal-linux-armv6`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "0.6.0-alpha2",
 			url:     `https://github.com/equinix/metal-cli/releases/download/0.6.0-alpha2/metal-windows-amd64.exe`,
@@ -2426,7 +2426,7 @@ func Test_DownloadPorterCli(t *testing.T) {
 			url:     `https://github.com/getporter/porter/releases/download/v0.38.4/porter-linux-amd64`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.38.4",
 			url:     `https://github.com/getporter/porter/releases/download/v0.38.4/porter-windows-amd64.exe`,
@@ -2476,12 +2476,12 @@ func Test_DownloadJq(t *testing.T) {
 			url:  prefix + "jq-linux32",
 		},
 		{
-			os:   "ming",
+			os:   "windows",
 			arch: arch64bit,
 			url:  prefix + "jq-win64.exe",
 		},
 		{
-			os:   "ming",
+			os:   "windows",
 			arch: arch32bit,
 			url:  prefix + "jq-win32.exe",
 		},
@@ -2527,7 +2527,7 @@ func Test_DownloadCosignCli(t *testing.T) {
 			url:     `https://github.com/sigstore/cosign/releases/download/v1.0.0/cosign-linux-amd64`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v1.0.0",
 			url:     `https://github.com/sigstore/cosign/releases/download/v1.0.0/cosign-windows-amd64.exe`,
@@ -2613,7 +2613,7 @@ func Test_DownloadKubestr(t *testing.T) {
 			url:     `https://github.com/kastenhq/kubestr/releases/download/v0.4.31/kubestr_0.4.31_Linux_arm64.tar.gz`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: v,
 			url:     `https://github.com/kastenhq/kubestr/releases/download/v0.4.31/kubestr_0.4.31_Windows_amd64.tar.gz`,
@@ -2739,7 +2739,7 @@ func Test_DownloadRekorCli(t *testing.T) {
 			url:     `https://github.com/sigstore/rekor/releases/download/v0.3.0/rekor-cli-linux-amd64`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.3.0",
 			url:     `https://github.com/sigstore/rekor/releases/download/v0.3.0/rekor-cli-windows-amd64.exe`,
@@ -2792,7 +2792,7 @@ func Test_DownloadTFSecCli(t *testing.T) {
 			url:     `https://github.com/aquasecurity/tfsec/releases/download/v0.57.1/tfsec-linux-arm64`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.57.1",
 			url:     `https://github.com/aquasecurity/tfsec/releases/download/v0.57.1/tfsec-windows-amd64.exe`,
@@ -2845,7 +2845,7 @@ func Test_DownloadDive(t *testing.T) {
 			url:     `https://github.com/wagoodman/dive/releases/download/v0.10.0/dive_0.10.0_linux_amd64.tar.gz`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     `https://github.com/wagoodman/dive/releases/download/v0.10.0/dive_0.10.0_windows_amd64.zip`,
@@ -2897,7 +2897,7 @@ func Test_DownloadGoReleaserCli(t *testing.T) {
 			url:     `https://github.com/goreleaser/goreleaser/releases/download/v0.177.0/goreleaser_Linux_arm64.tar.gz`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.177.0",
 			url:     `https://github.com/goreleaser/goreleaser/releases/download/v0.177.0/goreleaser_Windows_x86_64.zip`,
@@ -2936,7 +2936,7 @@ func Test_DownloadKubescape(t *testing.T) {
 			url:     `https://github.com/armosec/kubescape/releases/download/v1.0.69/kubescape-ubuntu-latest`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			version: "v1.0.69",
 			url:     `https://github.com/armosec/kubescape/releases/download/v1.0.69/kubescape-windows-latest`,
 		},
@@ -2993,7 +2993,7 @@ func Test_DownloadKrew(t *testing.T) {
 			url:     `https://github.com/kubernetes-sigs/krew/releases/download/v0.4.2/krew-linux_arm.tar.gz`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.4.2",
 			url:     `https://github.com/kubernetes-sigs/krew/releases/download/v0.4.2/krew-windows_amd64.tar.gz`,
@@ -3116,7 +3116,7 @@ func Test_DownloadvCluster(t *testing.T) {
 
 	tests := []test{
 		{
-			os:      "mingw64_nt-10.0-18362",
+			os:      "windows",
 			arch:    arch64bit,
 			version: "v0.4.5",
 			url:     `https://github.com/loft-sh/vcluster/releases/download/v0.4.5/vcluster-windows-amd64.exe`,
@@ -3186,7 +3186,7 @@ func Test_DownloadHostcl(t *testing.T) {
 		},
 
 		{
-			os:      "mingw64_nt-10.0-18362",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     "https://github.com/guumaster/hostctl/releases/download/v1.1.1/hostctl_1.1.1_windows_64-bit.zip",
@@ -3237,7 +3237,7 @@ func Test_DownloadKubecm(t *testing.T) {
 			url:     `https://github.com/sunny0826/kubecm/releases/download/v0.16.2/kubecm_0.16.2_Linux_arm64.tar.gz`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     `https://github.com/sunny0826/kubecm/releases/download/v0.16.2/kubecm_0.16.2_Windows_x86_64.tar.gz`,
@@ -3290,7 +3290,7 @@ func Test_DownloadMkcert(t *testing.T) {
 			url:     `https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-arm`,
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     `https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-windows-amd64.exe`,
@@ -3350,7 +3350,7 @@ func Test_DownloadSOPS(t *testing.T) {
 		},
 
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     "https://github.com/mozilla/sops/releases/download/v3.7.2/sops-v3.7.2.exe",
@@ -3406,7 +3406,7 @@ func Test_DownloadDagger(t *testing.T) {
 			url:     "https://github.com/dagger/dagger/releases/download/v0.2.4/dagger_v0.2.4_linux_amd64.tar.gz",
 		},
 		{
-			os:      "ming",
+			os:      "windows",
 			arch:    arch64bit,
 			version: version,
 			url:     "https://github.com/dagger/dagger/releases/download/v0.2.4/dagger_v0.2.4_windows_amd64.zip",
@@ -3433,12 +3433,12 @@ func Test_DownloadOhMyPosh(t *testing.T) {
 	const toolVersion = "v7.55.2"
 
 	tests := []test{
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    arch64bit,
 			version: toolVersion,
 			url:     `https://github.com/jandedobbeleer/oh-my-posh/releases/download/v7.55.2/posh-windows-amd64.exe`,
 		},
-		{os: "mingw64_nt-10.0-18362",
+		{os: "windows",
 			arch:    archARM64,
 			version: toolVersion,
 			url:     `https://github.com/jandedobbeleer/oh-my-posh/releases/download/v7.55.2/posh-windows-arm64.exe`,
